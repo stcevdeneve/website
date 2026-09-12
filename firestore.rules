@@ -1,0 +1,21 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Site içeriği: herkes okur, sadece izinli yöneticiler yazar.
+    function isAdmin() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    match /content/{doc}   { allow read: if true; allow write: if isAdmin(); }
+    match /services/{doc}  { allow read: if true; allow write: if isAdmin(); }
+    match /provinces/{doc} { allow read: if true; allow write: if isAdmin(); }
+    match /products/{doc}  { allow read: if true; allow write: if isAdmin(); }
+    match /faqs/{doc}      { allow read: if true; allow write: if isAdmin(); }
+    match /reviews/{doc}   { allow read: if true; allow write: if isAdmin(); }
+
+    // Yönetici listesi: sadece konsoldan düzenlenir, istemci okuyamaz.
+    match /admins/{uid}    { allow read, write: if false; }
+  }
+}
