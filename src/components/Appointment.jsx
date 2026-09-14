@@ -20,6 +20,8 @@ export default function Appointment({ site }) {
   const [loadingAvailability, setLoadingAvailability] = useState(false);
   const [availabilityError, setAvailabilityError] = useState(null);
 
+  const [closedDates, setClosedDates] = useState(new Set());
+
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(null);
   const [success, setSuccess] = useState(null);
@@ -38,6 +40,15 @@ export default function Appointment({ site }) {
     }
     return { year, month, cells };
   }, [monthOffset]);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch(`/api/booking/closed-days?year=${grid.year}&month=${grid.month + 1}`)
+      .then(r => r.json())
+      .then(data => { if (!cancelled) setClosedDates(new Set(data.closedDates || [])); })
+      .catch(() => { if (!cancelled) setClosedDates(new Set()); });
+    return () => { cancelled = true; };
+  }, [grid.year, grid.month]);
 
   useEffect(() => {
     if (!selected) { setAvailability(null); return; }
@@ -128,16 +139,20 @@ export default function Appointment({ site }) {
               {grid.cells.map((cell, i) => {
                 if (!cell) return <span key={'e' + i} />;
                 const on = isSel(cell.key);
+                const closed = closedDates.has(toDateStr(cell.key));
+                const disabled = cell.disabled || closed;
                 return (
-                  <button key={cell.d} disabled={cell.disabled}
+                  <button key={cell.d} disabled={disabled}
                     onClick={() => { setSelected(cell.key); setSlot(null); }}
+                    title={closed ? 'Bu gün kapalı' : undefined}
                     style={{
                       aspectRatio: '1', borderRadius: 12,
-                      border: '1px solid ' + (on ? c.orange : cell.disabled ? 'transparent' : 'rgba(160,105,72,0.20)'),
-                      background: on ? c.orange : cell.disabled ? 'transparent' : c.field,
-                      color: on ? '#fff' : cell.disabled ? '#C3B7A9' : c.ink,
+                      border: '1px solid ' + (on ? c.orange : disabled ? 'transparent' : 'rgba(160,105,72,0.20)'),
+                      background: on ? c.orange : disabled ? 'transparent' : c.field,
+                      color: on ? '#fff' : disabled ? '#C3B7A9' : c.ink,
                       fontSize: 14, fontWeight: on ? 700 : 500,
-                      cursor: cell.disabled ? 'not-allowed' : 'pointer'
+                      textDecoration: closed ? 'line-through' : 'none',
+                      cursor: disabled ? 'not-allowed' : 'pointer'
                     }}>{cell.d}</button>
                 );
               })}
