@@ -1,21 +1,13 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { c, kicker, h2, lead, field, mono } from '../styles';
 
 const MONTHS = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
 const WEEKDAYS = ['Pzt','Sal','Çar','Per','Cum','Cmt','Paz'];
-const SLOTS = ['09:00','10:30','12:00','13:30','15:00','16:30','18:00','19:30'];
 
-/**
- * Seçilen gün + saati Google Randevu Sayfası linkine parametre olarak ekler.
- * Google, ?date=YYYYMMDD ve ?time=HH:MM parametrelerini okuyup ilgili slotu açar.
- */
-function bookingHref(baseUrl, date, slot) {
-  const url = baseUrl || import.meta.env.VITE_GOOGLE_BOOKING_URL || '';
-  if (!url || !date || !slot) return url || '#randevu';
-  const [y, m, d] = date;
+function toDateStr(key) {
+  const [y, m, d] = key;
   const pad = n => String(n).padStart(2, '0');
-  const qs = new URLSearchParams({ date: `${y}${pad(m)}${pad(d)}`, time: slot });
-  return url + (url.includes('?') ? '&' : '?') + qs.toString();
+  return `${y}-${pad(m)}-${pad(d)}`;
 }
 
 export default function Appointment({ site }) {
@@ -23,6 +15,14 @@ export default function Appointment({ site }) {
   const [selected, setSelected] = useState(null);   // [y, m, d]
   const [slot, setSlot] = useState(null);
   const [form, setForm] = useState({ name: '', phone: '', address: '' });
+
+  const [availability, setAvailability] = useState(null); // { dayClosed, slots: [{time, available}] }
+  const [loadingAvailability, setLoadingAvailability] = useState(false);
+  const [availabilityError, setAvailabilityError] = useState(null);
+
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
+  const [success, setSuccess] = useState(null);
 
   const grid = useMemo(() => {
     const now = new Date();
@@ -39,9 +39,67 @@ export default function Appointment({ site }) {
     return { year, month, cells };
   }, [monthOffset]);
 
+  useEffect(() => {
+    if (!selected) { setAvailability(null); return; }
+    let cancelled = false;
+    setLoadingAvailability(true);
+    setAvailabilityError(null);
+    setSlot(null);
+    fetch(`/api/booking/availability?date=${toDateStr(selected)}`)
+      .then(r => r.json())
+      .then(data => { if (!cancelled) setAvailability(data); })
+      .catch(() => { if (!cancelled) setAvailabilityError('Uygunluk bilgisi alınamadı, tekrar deneyin.'); })
+      .finally(() => { if (!cancelled) setLoadingAvailability(false); });
+    return () => { cancelled = true; };
+  }, [selected]);
+
   const isSel = key => selected && key.join('-') === selected.join('-');
-  const href = bookingHref(site.bookingUrl, selected, slot);
-  const ready = selected && slot;
+  const ready = selected && slot && !submitting;
+
+  async function handleSubmit() {
+    if (!ready) return;
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      const res = await fetch('/api/booking/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ date: toDateStr(selected), slot, ...form })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setSubmitError(data.error || 'Randevu oluşturulamadı, tekrar deneyin.');
+        if (res.status === 409) {
+          setAvailability(a => a && { ...a, slots: a.slots.map(s => s.time === slot ? { ...s, available: false } : s) });
+          setSlot(null);
+        }
+        return;
+      }
+      setSuccess({ date: toDateStr(selected), slot });
+    } catch {
+      setSubmitError('Bağlantı hatası, tekrar deneyin.');
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  if (success) {
+    return (
+      <section id="randevu" style={{ background: c.bgAlt, borderTop: '1px solid ' + c.line, borderBottom: '1px solid ' + c.line }}>
+        <div style={{ maxWidth: 720, margin: '0 auto', padding: 'clamp(40px,6vw,72px) 20px', textAlign: 'center' }}>
+          <div style={{ fontSize: 40, marginBottom: 10 }}>✅</div>
+          <h2 style={h2}>Randevunuz alındı</h2>
+          <p style={{ ...lead, marginTop: 10 }}>
+            {selected[2]} {MONTHS[selected[1] - 1]} {selected[0]} · {success.slot} için randevunuz oluşturuldu. Ekibimiz onay için sizinle iletişime geçecek.
+          </p>
+          <button onClick={() => { setSuccess(null); setSelected(null); setSlot(null); setForm({ name: '', phone: '', address: '' }); }}
+            style={{ marginTop: 20, padding: '12px 22px', borderRadius: 14, border: 'none', background: c.brown, color: '#fff', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>
+            Yeni randevu oluştur
+          </button>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="randevu" style={{ background: c.bgAlt, borderTop: '1px solid ' + c.line, borderBottom: '1px solid ' + c.line }}>
@@ -49,7 +107,7 @@ export default function Appointment({ site }) {
         <div data-reveal>
           <span style={kicker}>02 — Randevu</span>
           <h2 style={h2}>Keşif randevusu</h2>
-          <p style={{ ...lead, marginBottom: 26 }}>Takvimden uygun günü ve saati seçin. Onay maili Google Takvim üzerinden gönderilir.</p>
+          <p style={{ ...lead, marginBottom: 26 }}>Takvimden uygun günü ve saati seçin. Randevunuz anında oluşturulur.</p>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 20, alignItems: 'start' }}>
@@ -92,20 +150,34 @@ export default function Appointment({ site }) {
               {selected ? `${selected[2]} ${MONTHS[selected[1] - 1]} ${selected[0]}` : 'Önce takvimden bir gün seçin'}
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(94px,1fr))', gap: 9, marginTop: 16 }}>
-              {SLOTS.map(t => {
-                const on = slot === t;
-                return (
-                  <button key={t} disabled={!selected} onClick={() => setSlot(t)} style={{
-                    padding: '11px 6px', borderRadius: 12, fontSize: 14, fontWeight: 550,
-                    cursor: selected ? 'pointer' : 'not-allowed',
-                    border: '1px solid ' + (on ? c.ink : 'rgba(160,105,72,0.22)'),
-                    background: on ? c.ink : c.field,
-                    color: on ? '#fff' : selected ? c.ink : '#B6A897'
-                  }}>{t}</button>
-                );
-              })}
-            </div>
+            {loadingAvailability && (
+              <p style={{ fontSize: 13, color: '#9C8877', marginTop: 14 }}>Uygunluk kontrol ediliyor…</p>
+            )}
+            {availabilityError && (
+              <p style={{ fontSize: 13, color: '#B0413E', marginTop: 14 }}>{availabilityError}</p>
+            )}
+            {availability && availability.dayClosed && (
+              <p style={{ fontSize: 13, color: '#B0413E', marginTop: 14 }}>Bu gün için randevu alınamıyor, lütfen başka bir gün seçin.</p>
+            )}
+
+            {selected && !loadingAvailability && !availabilityError && (
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(94px,1fr))', gap: 9, marginTop: 16 }}>
+                {(availability ? availability.slots : []).map(({ time, available }) => {
+                  const on = slot === time;
+                  const disabled = !available;
+                  return (
+                    <button key={time} disabled={disabled} onClick={() => setSlot(time)} style={{
+                      padding: '11px 6px', borderRadius: 12, fontSize: 14, fontWeight: 550,
+                      cursor: disabled ? 'not-allowed' : 'pointer',
+                      border: '1px solid ' + (on ? c.ink : 'rgba(160,105,72,0.22)'),
+                      background: on ? c.ink : disabled ? 'rgba(160,105,72,0.06)' : c.field,
+                      color: on ? '#fff' : disabled ? '#C3B7A9' : c.ink,
+                      textDecoration: disabled ? 'line-through' : 'none'
+                    }}>{time}</button>
+                  );
+                })}
+              </div>
+            )}
 
             <div style={{ height: 1, background: c.line, margin: '22px 0' }} />
 
@@ -118,19 +190,22 @@ export default function Appointment({ site }) {
                 onChange={e => setForm({ ...form, address: e.target.value })} style={{ ...field, padding: '12px 13px' }} />
             </div>
 
-            <a href={href} target="_blank" rel="noopener noreferrer"
-              aria-disabled={!ready}
+            {submitError && (
+              <p style={{ margin: '12px 0 0', fontSize: 13, color: '#B0413E' }}>{submitError}</p>
+            )}
+
+            <button onClick={handleSubmit} disabled={!ready || !form.name || !form.phone}
               style={{
-                display: 'block', textAlign: 'center', marginTop: 16, padding: 14, borderRadius: 14,
-                background: ready ? c.brown : 'rgba(160,105,72,0.35)', color: '#fff',
+                display: 'block', width: '100%', textAlign: 'center', marginTop: 16, padding: 14, borderRadius: 14,
+                border: 'none', background: (ready && form.name && form.phone) ? c.brown : 'rgba(160,105,72,0.35)', color: '#fff',
                 fontSize: 15, fontWeight: 600,
-                pointerEvents: ready ? 'auto' : 'none'
+                cursor: (ready && form.name && form.phone) ? 'pointer' : 'not-allowed'
               }}>
-              {ready ? 'Randevuyu onayla · ' + slot : 'Gün ve saat seçin'}
-            </a>
+              {submitting ? 'Gönderiliyor…' : ready ? 'Randevuyu onayla · ' + slot : 'Gün ve saat seçin'}
+            </button>
 
             <p style={{ margin: '12px 0 0', fontSize: 12, lineHeight: 1.55, color: '#8A7461', fontFamily: mono }}>
-              Seçilen gün ve saat Google Randevu Sayfası bağlantısına parametre olarak iletilir.
+              Randevunuz oluşturulduğunda ekibimizin takviminde otomatik olarak yer ayrılır.
             </p>
           </div>
         </div>
