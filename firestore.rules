@@ -15,7 +15,11 @@ service cloud.firestore {
     match /faqs/{doc}      { allow read: if true; allow write: if isAdmin(); }
     match /reviews/{doc}   { allow read: if true; allow write: if isAdmin(); }
 
-    // Yönetici listesi: sadece konsoldan düzenlenir, istemci okuyamaz.
-    match /admins/{uid}    { allow read, write: if false; }
+    // Yönetici listesi: sadece konsoldan düzenlenir. Kullanıcı yalnızca
+    // kendi admin kaydının var olup olmadığını okuyabilir (panel giriş kontrolü için).
+    match /admins/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+    }
   }
 }
