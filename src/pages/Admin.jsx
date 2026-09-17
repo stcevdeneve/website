@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { onAuthStateChanged, signInWithRedirect, getRedirectResult, signOut } from 'firebase/auth';
+import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
 import { auth, googleProvider, firebaseReady } from '../firebase/client';
 import * as d from '../firebase/defaults';
 import { loadContentDoc, saveContentDoc, loadCollection, saveCollection, checkIsAdmin, slugify } from '../firebase/adminData';
@@ -169,7 +169,6 @@ export default function Admin() {
 
   useEffect(() => {
     if (!firebaseReady) { setUser(null); return; }
-    getRedirectResult(auth).catch(err => setAuthError(err.message));
     return onAuthStateChanged(auth, async u => {
       setUser(u || null);
       if (u) setIsAdmin(await checkIsAdmin(u.uid));
@@ -187,7 +186,7 @@ export default function Admin() {
     return (
       <Centered>
         <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 14 }}>STC Evden Eve — Yönetim Paneli</div>
-        <button style={btnPrimary} onClick={() => signInWithRedirect(auth, googleProvider)}>Google ile giriş yap</button>
+        <button style={btnPrimary} onClick={() => signInWithPopup(auth, googleProvider).catch(err => setAuthError(err.message))}>Google ile giriş yap</button>
         {authError && <p style={{ fontSize: 13, color: '#B0413E', marginTop: 14, maxWidth: 380 }}>{authError}</p>}
       </Centered>
     );
