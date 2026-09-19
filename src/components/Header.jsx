@@ -25,8 +25,8 @@ export default function Header({ site, isMobile }) {
         <a href="#anasayfa" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <img src="/logo.svg" alt="STC Evden Eve" style={{ height: 60, width: 'auto', display: 'block' }} />
           <span style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
-            <span style={{ fontSize: 17, fontWeight: 700, letterSpacing: '-0.02em', color: c.ink }}>STC</span>
-            <span style={{ fontSize: 10, fontWeight: 500, letterSpacing: '0.22em', textTransform: 'uppercase', color: c.brown, marginTop: 3 }}>Evden Eve</span>
+            <span style={{ fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em', color: c.ink }}>STC</span>
+            <span style={{ fontSize: 13, fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', color: c.brown, marginTop: 4 }}>Evden Eve</span>
           </span>
         </a>
 
