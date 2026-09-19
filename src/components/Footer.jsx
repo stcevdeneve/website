@@ -14,7 +14,7 @@ export default function Footer({ site }) {
           <Head>Hizmetler</Head>
           <Col>
             <a href="#hesapla" style={link}>Fiyat hesaplama</a>
-            <a href="#randevu" style={link}>Keşif randevusu</a>
+            <a href="#randevu" style={link}>Randevu al</a>
             <a href="#harita" style={link}>Hizmet bölgeleri</a>
             <a href="#yorumlar" style={link}>Google yorumları</a>
             <a href="#kutu" style={link}>Kutu &amp; ambalaj</a>

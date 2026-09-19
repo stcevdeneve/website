@@ -126,7 +126,7 @@ export default function PriceCalculator({ pricing, cities }) {
             background: c.orange, color: '#fff', fontSize: 15, fontWeight: 600
           }}>Bu fiyatla randevu al</a>
           <p style={{ margin: '14px 0 0', fontSize: 12.5, lineHeight: 1.55, color: '#9C8877' }}>
-            Tutar; mesafe, hacim ve kat bilgisine göre üretilen ön tahmindir. Kesin fiyat ücretsiz keşif sonrası netleşir.
+            Tutar; mesafe, hacim ve kat bilgisine göre üretilen ön tahmindir. Kesin fiyat randevunuz sonrası netleşir.
           </p>
         </div>
       </div>

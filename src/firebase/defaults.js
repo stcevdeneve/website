@@ -26,7 +26,7 @@ export const hero = {
   titleAccent: 'planlanır.',
   body: 'STC Evden Eve; paketleme, asansörlü taşıma, depolama ve montaj süreçlerini tek ekiple yürütür. Adres ve kat bilgilerinizi girin, fiyatınızı saniyeler içinde görün.',
   primaryCta: 'Ücretsiz fiyat hesapla',
-  secondaryCta: 'Keşif randevusu al',
+  secondaryCta: 'Randevu al',
   imageUrl: 'https://images.unsplash.com/photo-1600518464441-9154a4dea21b?w=900&h=765&fit=crop',
   badgeCardTitle: 'Sigortalı & sözleşmeli',
   badgeCardBody: 'Her taşımada eşya güvencesi',
@@ -129,7 +129,7 @@ export const products = [
 ];
 
 export const faqs = [
-  { id: 'f1', order: 1, question: 'Fiyat hesaplayıcıdaki tutar kesin mi?', answer: 'Hayır, ön tahmindir. Mesafe, eşya hacmi ve kat bilgisine göre hesaplanır. Ücretsiz keşif sonrası sabit fiyatlı sözleşme sunulur.' },
+  { id: 'f1', order: 1, question: 'Fiyat hesaplayıcıdaki tutar kesin mi?', answer: 'Hayır, ön tahmindir. Mesafe, eşya hacmi ve kat bilgisine göre hesaplanır. Randevunuzun ardından ekibimiz sabit fiyatlı sözleşme sunar.' },
   { id: 'f2', order: 2, question: 'Eşyalarım sigortalı mı taşınıyor?', answer: 'Evet. Tüm taşımalar nakliyat sigortası kapsamındadır; poliçe sözleşmenizle birlikte tarafınıza iletilir.' },
   { id: 'f3', order: 3, question: 'Asansörsüz binada ne oluyor?', answer: "Kat farkı ve merdiven durumuna göre mobilya asansörü öneriyoruz. Hesaplayıcıda 'Mobilya asansörü' seçeneğini işaretleyerek maliyeti görebilirsiniz." },
   { id: 'f4', order: 4, question: 'Kutuları nereden alabilirim?', answer: "Konya'daki depomuzdan aynı gün teslim alabilir ya da Konya içi adrese gönderim talep edebilirsiniz." },

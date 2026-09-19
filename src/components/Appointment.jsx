@@ -117,7 +117,7 @@ export default function Appointment({ site }) {
     <section id="randevu" style={{ background: c.bgAlt, borderTop: '1px solid ' + c.line, borderBottom: '1px solid ' + c.line }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: 'clamp(28px,4vw,44px) 20px' }}>
         <div data-reveal>
-          <h2 style={h2}>Keşif randevusu</h2>
+          <h2 style={h2}>Randevu al</h2>
           <p style={{ ...lead, marginBottom: 26 }}>Takvimden uygun günü ve saati seçin. Randevunuz anında oluşturulur.</p>
         </div>
 
