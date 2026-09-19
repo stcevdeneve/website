@@ -13,11 +13,11 @@ export default function Coverage({ provinces, isMobile }) {
           <h2 style={h2}>Gittiğimiz iller</h2>
           <p style={lead}>Her işaret, ekibimizin taşıma tamamladığı bir ili gösterir. Turuncu işaret merkez depomuzdur.</p>
         </div>
-        <div style={{ fontFamily: mono, fontSize: 12, color: '#8A7461', maxWidth: '34ch', lineHeight: 1.6 }}>
-          {isMobile
-            ? 'İl adını ve taşıma sayısını görmek için haritada bir ile dokunun.'
-            : 'Liste Firestore provinces koleksiyonundan gelir — yeni il eklendiğinde harita otomatik güncellenir.'}
-        </div>
+        {isMobile && (
+          <div style={{ fontFamily: mono, fontSize: 12, color: '#8A7461', maxWidth: '34ch', lineHeight: 1.6 }}>
+            İl adını ve taşıma sayısını görmek için haritada bir ile dokunun.
+          </div>
+        )}
       </div>
 
       <div style={{
