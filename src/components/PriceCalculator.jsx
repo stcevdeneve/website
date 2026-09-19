@@ -15,8 +15,8 @@ function haversineKm(a, b, roadFactor) {
 }
 
 export default function PriceCalculator({ pricing, cities }) {
-  const [fromCity, setFromCity] = useState('İstanbul');
-  const [toCity, setToCity] = useState('Ankara');
+  const [fromCity, setFromCity] = useState('Konya');
+  const [toCity, setToCity] = useState('İstanbul');
   const [fromFloor, setFromFloor] = useState(3);
   const [toFloor, setToFloor] = useState(2);
   const [fromLift, setFromLift] = useState(true);

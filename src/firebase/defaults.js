@@ -4,18 +4,18 @@
  */
 
 export const site = {
-  phone: '+905000000000',
-  phoneDisplay: '0500 000 00 00',
+  phone: '+905350850240',
+  phoneDisplay: '0535 085 02 40',
   email: 'info@stcevdeneve.com',
-  addressLine1: 'Caferağa Mah. Nakliyeciler Sok. No: 12/A',
-  addressLine2: 'Kadıköy / İstanbul',
+  addressLine1: 'Hanaybaşı Mah. Pamukçular Sk. No:4/5',
+  addressLine2: 'Selçuklu / Konya',
   hoursWeekday: 'Pazartesi – Cumartesi · 08:00 – 19:00',
   hoursSunday: 'Pazar · Sadece randevulu',
-  mapsQuery: 'Kadikoy Istanbul',
-  mapsLink: 'https://maps.google.com/?q=Kadikoy%20Istanbul',
+  mapsQuery: 'Hanaybaşı Mah. Pamukçular Sk. Selçuklu Konya',
+  mapsLink: 'https://maps.google.com/?q=Hanayba%C5%9F%C4%B1%20Mah.%20Pamuk%C3%A7ular%20Sk.%20Sel%C3%A7uklu%20Konya',
   reviewLink: 'https://g.page/r/CYjs_RK7qfbsEBM/review',
   bookingUrl: '',
-  footerNote: 'Sigortalı evden eve nakliyat, depolama ve ambalaj malzemeleri. İstanbul merkezli, 81 ile hizmet.',
+  footerNote: 'Sigortalı evden eve nakliyat, depolama ve ambalaj malzemeleri. Konya merkezli, 81 ile hizmet.',
   copyright: '© 2026 STC Evden Eve Nakliyat. Tüm hakları saklıdır.'
 };
 
@@ -89,7 +89,7 @@ export const cities = [
 
 /** Haritada işaretlenen, hizmet verilen iller. */
 export const provinces = [
-  { id: 'istanbul', ad: 'İstanbul', lat: 41.0082, lng: 28.9784, merkez: true, tasima: 3120, order: 1 },
+  { id: 'istanbul', ad: 'İstanbul', lat: 41.0082, lng: 28.9784, tasima: 3120, order: 1 },
   { id: 'kocaeli', ad: 'Kocaeli', lat: 40.7654, lng: 29.9408, tasima: 410, order: 2 },
   { id: 'sakarya', ad: 'Sakarya', lat: 40.7569, lng: 30.3781, tasima: 260, order: 3 },
   { id: 'bursa', ad: 'Bursa', lat: 40.1885, lng: 29.061, tasima: 480, order: 4 },
@@ -98,7 +98,7 @@ export const provinces = [
   { id: 'canakkale', ad: 'Çanakkale', lat: 40.1553, lng: 26.4142, tasima: 95, order: 7 },
   { id: 'ankara', ad: 'Ankara', lat: 39.9334, lng: 32.8597, tasima: 640, order: 8 },
   { id: 'eskisehir', ad: 'Eskişehir', lat: 39.7767, lng: 30.5206, tasima: 220, order: 9 },
-  { id: 'konya', ad: 'Konya', lat: 37.8715, lng: 32.4846, tasima: 175, order: 10 },
+  { id: 'konya', ad: 'Konya', lat: 37.8715, lng: 32.4846, merkez: true, tasima: 175, order: 10 },
   { id: 'izmir', ad: 'İzmir', lat: 38.4237, lng: 27.1428, tasima: 520, order: 11 },
   { id: 'manisa', ad: 'Manisa', lat: 38.6191, lng: 27.4289, tasima: 130, order: 12 },
   { id: 'aydin', ad: 'Aydın', lat: 37.856, lng: 27.8416, tasima: 145, order: 13 },
@@ -132,7 +132,7 @@ export const faqs = [
   { id: 'f1', order: 1, question: 'Fiyat hesaplayıcıdaki tutar kesin mi?', answer: 'Hayır, ön tahmindir. Mesafe, eşya hacmi ve kat bilgisine göre hesaplanır. Ücretsiz keşif sonrası sabit fiyatlı sözleşme sunulur.' },
   { id: 'f2', order: 2, question: 'Eşyalarım sigortalı mı taşınıyor?', answer: 'Evet. Tüm taşımalar nakliyat sigortası kapsamındadır; poliçe sözleşmenizle birlikte tarafınıza iletilir.' },
   { id: 'f3', order: 3, question: 'Asansörsüz binada ne oluyor?', answer: "Kat farkı ve merdiven durumuna göre mobilya asansörü öneriyoruz. Hesaplayıcıda 'Mobilya asansörü' seçeneğini işaretleyerek maliyeti görebilirsiniz." },
-  { id: 'f4', order: 4, question: 'Kutuları nereden alabilirim?', answer: "Kadıköy'deki depomuzdan aynı gün teslim alabilir ya da İstanbul içi adrese gönderim talep edebilirsiniz." },
+  { id: 'f4', order: 4, question: 'Kutuları nereden alabilirim?', answer: "Konya'daki depomuzdan aynı gün teslim alabilir ya da Konya içi adrese gönderim talep edebilirsiniz." },
   { id: 'f5', order: 5, question: 'Şehirler arası taşıma kaç gün sürüyor?', answer: 'Mesafeye göre 1–3 gün. Aynı gün teslim gereken durumlarda özel araç planlaması yapılabilir.' },
   { id: 'f6', order: 6, question: 'Randevumu değiştirebilir miyim?', answer: 'Google Takvim üzerinden gelen onay e-postasındaki bağlantı ile 24 saat öncesine kadar ücretsiz değiştirebilirsiniz.' }
 ];
