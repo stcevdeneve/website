@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { c, kicker, h2, lead, mono } from '../styles';
 
 const Star = ({ on, size = 15 }) => (
@@ -9,8 +9,7 @@ const Star = ({ on, size = 15 }) => (
 );
 
 export default function Reviews({ reviews, rating, site }) {
-  const [all, setAll] = useState(false);
-  const shown = all ? reviews : reviews.slice(0, 3);
+  const shown = reviews;
   const bars = [5, 4, 3, 2, 1];
   const total = rating.count || 1;
 
@@ -19,7 +18,7 @@ export default function Reviews({ reviews, rating, site }) {
       <div data-reveal>
         <span style={kicker}>03 — Referans</span>
         <h2 style={h2}>Google yorumları</h2>
-        <p style={{ ...lead, marginBottom: 26 }}>Yorumlar Google İşletme Profili'nden otomatik çekilir; düzenlenemez.</p>
+        <p style={{ ...lead, marginBottom: 26 }}>Müşterilerimizin Google İşletme Profilimizde bıraktığı yorumlar.</p>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: 20, alignItems: 'start' }}>
@@ -77,19 +76,6 @@ export default function Reviews({ reviews, rating, site }) {
             </div>
           ))}
 
-          {reviews.length > 3 && (
-            <button onClick={() => setAll(a => !a)} style={{
-              alignSelf: 'flex-start', padding: '12px 20px', borderRadius: 13,
-              border: '1px solid rgba(160,105,72,0.3)', background: 'transparent',
-              cursor: 'pointer', fontSize: 14.5, fontWeight: 600, color: c.ink70
-            }}>
-              {all ? 'Daha az göster' : `Tüm yorumları göster (${reviews.length})`}
-            </button>
-          )}
-
-          <div style={{ fontFamily: mono, fontSize: 11.5, lineHeight: 1.6, color: '#8A7461' }}>
-            Google Places API → Firebase Cloud Function (günlük cache) → reviews koleksiyonu.
-          </div>
         </div>
       </div>
     </section>

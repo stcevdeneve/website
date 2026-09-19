@@ -13,7 +13,7 @@ export const site = {
   hoursSunday: 'Pazar · Sadece randevulu',
   mapsQuery: 'Kadikoy Istanbul',
   mapsLink: 'https://maps.google.com/?q=Kadikoy%20Istanbul',
-  reviewLink: 'https://maps.google.com/?q=STC%20Evden%20Eve%20Kadikoy',
+  reviewLink: 'https://g.page/r/CYjs_RK7qfbsEBM/review',
   bookingUrl: '',
   footerNote: 'Sigortalı evden eve nakliyat, depolama ve ambalaj malzemeleri. İstanbul merkezli, 81 ile hizmet.',
   copyright: '© 2026 STC Evden Eve Nakliyat. Tüm hakları saklıdır.'
