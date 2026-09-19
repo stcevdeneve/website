@@ -6,7 +6,7 @@ export default function Contact({ site }) {
 
   return (
     <section id="iletisim" style={{ background: c.bgAlt, borderTop: '1px solid ' + c.line }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: 'clamp(40px,6vw,72px) 20px' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: 'clamp(28px,4vw,44px) 20px' }}>
         <div data-reveal>
           <h2 style={h2}>Dükkân &amp; kutu teslim noktası</h2>
         </div>

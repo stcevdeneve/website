@@ -6,7 +6,7 @@ export default function Coverage({ provinces, isMobile }) {
   const total = provinces.reduce((t, p) => t + (p.tasima || 0), 0);
 
   return (
-    <section id="harita" style={{ maxWidth: 1200, margin: '0 auto', padding: 'clamp(40px,6vw,72px) 20px' }}>
+    <section id="harita" style={{ maxWidth: 1200, margin: '0 auto', padding: 'clamp(28px,4vw,44px) 20px' }}>
       <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap', marginBottom: 24 }} data-reveal>
         <div>
           <h2 style={h2}>Gittiğimiz iller</h2>

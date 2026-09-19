@@ -5,7 +5,7 @@ export default function Faq({ faqs }) {
   const [open, setOpen] = useState(0);
 
   return (
-    <section id="sss" style={{ maxWidth: 900, margin: '0 auto', padding: 'clamp(40px,6vw,80px) 20px' }}>
+    <section id="sss" style={{ maxWidth: 900, margin: '0 auto', padding: 'clamp(28px,4vw,44px) 20px' }}>
       <div data-reveal>
         <h2 style={{ ...h2, marginBottom: 26 }}>Sık sorulan sorular</h2>
       </div>

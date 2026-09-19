@@ -5,7 +5,7 @@ export default function Hero({ hero }) {
   return (
     <section id="anasayfa" style={{
       maxWidth: 1200, margin: '0 auto',
-      padding: 'clamp(40px,7vw,84px) 20px clamp(30px,5vw,56px)',
+      padding: 'clamp(32px,6vw,72px) 20px clamp(20px,3vw,32px)',
       display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(320px,1fr))',
       gap: 'clamp(28px,4vw,56px)', alignItems: 'center'
     }}>

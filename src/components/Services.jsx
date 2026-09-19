@@ -10,7 +10,7 @@ const ICONS = {
 
 export default function Services({ services }) {
   return (
-    <section style={{ maxWidth: 1200, margin: '0 auto', padding: 'clamp(24px,4vw,48px) 20px' }}>
+    <section style={{ maxWidth: 1200, margin: '0 auto', padding: 'clamp(28px,4vw,44px) 20px' }}>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(230px,1fr))', gap: 16 }}>
         {services.map((s, i) => {
           const orange = s.accent === 'orange';

@@ -98,7 +98,7 @@ export default function Appointment({ site }) {
   if (success) {
     return (
       <section id="randevu" style={{ background: c.bgAlt, borderTop: '1px solid ' + c.line, borderBottom: '1px solid ' + c.line }}>
-        <div style={{ maxWidth: 720, margin: '0 auto', padding: 'clamp(40px,6vw,72px) 20px', textAlign: 'center' }}>
+        <div style={{ maxWidth: 720, margin: '0 auto', padding: 'clamp(28px,4vw,44px) 20px', textAlign: 'center' }}>
           <div style={{ fontSize: 40, marginBottom: 10 }}>✅</div>
           <h2 style={h2}>Randevunuz alındı</h2>
           <p style={{ ...lead, marginTop: 10 }}>
@@ -115,7 +115,7 @@ export default function Appointment({ site }) {
 
   return (
     <section id="randevu" style={{ background: c.bgAlt, borderTop: '1px solid ' + c.line, borderBottom: '1px solid ' + c.line }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: 'clamp(40px,6vw,72px) 20px' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: 'clamp(28px,4vw,44px) 20px' }}>
         <div data-reveal>
           <h2 style={h2}>Keşif randevusu</h2>
           <p style={{ ...lead, marginBottom: 26 }}>Takvimden uygun günü ve saati seçin. Randevunuz anında oluşturulur.</p>

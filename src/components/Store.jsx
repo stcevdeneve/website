@@ -7,7 +7,7 @@ export default function Store({ products }) {
   const total = products.reduce((t, p) => t + p.price * (qty[p.id] || 0), 0);
 
   return (
-    <section id="kutu" style={{ maxWidth: 1200, margin: '0 auto', padding: 'clamp(40px,6vw,72px) 20px' }}>
+    <section id="kutu" style={{ maxWidth: 1200, margin: '0 auto', padding: 'clamp(28px,4vw,44px) 20px' }}>
       <div data-reveal>
         <h2 style={h2}>Kutu &amp; ambalaj malzemeleri</h2>
         <p style={{ ...lead, marginBottom: 26 }}>Kendiniz paketlemek isterseniz depomuzdan teslim alabilir veya adresinize gönderebiliriz.</p>

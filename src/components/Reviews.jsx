@@ -15,7 +15,7 @@ export default function Reviews({ reviews, rating, site }) {
 
   if (!reviews || reviews.length === 0) {
     return (
-      <section id="yorumlar" style={{ maxWidth: 1200, margin: '0 auto', padding: 'clamp(40px,6vw,72px) 20px' }}>
+      <section id="yorumlar" style={{ maxWidth: 1200, margin: '0 auto', padding: 'clamp(28px,4vw,44px) 20px' }}>
         <div data-reveal style={{
           background: '#fff', border: '1px solid ' + c.line, borderRadius: 28,
           padding: 'clamp(32px,6vw,64px) clamp(20px,4vw,48px)', textAlign: 'center'
@@ -38,7 +38,7 @@ export default function Reviews({ reviews, rating, site }) {
   }
 
   return (
-    <section id="yorumlar" style={{ maxWidth: 1200, margin: '0 auto', padding: 'clamp(40px,6vw,72px) 20px' }}>
+    <section id="yorumlar" style={{ maxWidth: 1200, margin: '0 auto', padding: 'clamp(28px,4vw,44px) 20px' }}>
       <div data-reveal>
         <h2 style={h2}>Google yorumları</h2>
         <p style={{ ...lead, marginBottom: 26 }}>Müşterilerimizin Google İşletme Profilimizde bıraktığı yorumlar.</p>
