@@ -15,6 +15,9 @@ export const site = {
   mapsLink: 'https://maps.google.com/?q=Hanayba%C5%9F%C4%B1%20Mah.%20Pamuk%C3%A7ular%20Sk.%20Sel%C3%A7uklu%20Konya',
   reviewLink: 'https://g.page/r/CYjs_RK7qfbsEBM/review',
   bookingUrl: '',
+  whatsapp: '905350850240',
+  storeDeliveryFee: '150',
+  storeFreeDeliveryOver: '1500',
   footerNote: 'Sigortalı evden eve nakliyat, depolama ve ambalaj malzemeleri. Konya merkezli, 81 ile hizmet.',
   copyright: '© 2026 STC Evden Eve Nakliyat. Tüm hakları saklıdır.'
 };
@@ -120,12 +123,12 @@ export const provinces = [
 ];
 
 export const products = [
-  { id: 'standart-koli', order: 1, name: 'Standart koli', desc: '50×35×35 cm, çift oluklu', price: 65, imageUrl: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=640&h=480&fit=crop' },
-  { id: 'buyuk-koli', order: 2, name: 'Büyük koli', desc: '60×45×45 cm, ağır eşya', price: 95, imageUrl: 'https://images.unsplash.com/photo-1607166452427-7e4477079cb9?w=640&h=480&fit=crop' },
-  { id: 'balonlu-naylon', order: 3, name: 'Balonlu naylon', desc: '50 cm × 20 m rulo', price: 220, imageUrl: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?w=640&h=480&fit=crop' },
-  { id: 'strec-film', order: 4, name: 'Streç film', desc: '50 cm × 300 m', price: 340, imageUrl: 'https://images.unsplash.com/photo-1620325867502-221cfb5faa5f?w=640&h=480&fit=crop' },
-  { id: 'elbise-kolisi', order: 5, name: 'Elbise kolisi', desc: 'Askılıklı, 100 cm', price: 260, imageUrl: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=640&h=480&fit=crop' },
-  { id: 'koli-bandi', order: 6, name: "Koli bandı (6'lı)", desc: '48 mm × 100 m', price: 180, imageUrl: 'https://images.unsplash.com/photo-1607166452427-7e4477079cb9?w=640&h=480&fit=crop&sat=-100' }
+  { id: 'standart-koli', order: 1, name: 'Standart koli', desc: '50×35×35 cm, çift oluklu', price: 65, stock: 500, imageUrl: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=640&h=480&fit=crop' },
+  { id: 'buyuk-koli', order: 2, name: 'Büyük koli', desc: '60×45×45 cm, ağır eşya', price: 95, stock: 500, imageUrl: 'https://images.unsplash.com/photo-1607166452427-7e4477079cb9?w=640&h=480&fit=crop' },
+  { id: 'balonlu-naylon', order: 3, name: 'Balonlu naylon', desc: '50 cm × 20 m rulo', price: 220, stock: 500, imageUrl: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?w=640&h=480&fit=crop' },
+  { id: 'strec-film', order: 4, name: 'Streç film', desc: '50 cm × 300 m', price: 340, stock: 500, imageUrl: 'https://images.unsplash.com/photo-1620325867502-221cfb5faa5f?w=640&h=480&fit=crop' },
+  { id: 'elbise-kolisi', order: 5, name: 'Elbise kolisi', desc: 'Askılıklı, 100 cm', price: 260, stock: 500, imageUrl: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=640&h=480&fit=crop' },
+  { id: 'koli-bandi', order: 6, name: "Koli bandı (6'lı)", desc: '48 mm × 100 m', price: 180, stock: 500, imageUrl: 'https://images.unsplash.com/photo-1607166452427-7e4477079cb9?w=640&h=480&fit=crop&sat=-100' }
 ];
 
 export const faqs = [

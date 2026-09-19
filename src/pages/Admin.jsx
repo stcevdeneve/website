@@ -27,6 +27,9 @@ const SITE_FIELDS = [
   ['mapsQuery', 'Harita arama metni'],
   ['mapsLink', 'Google Maps linki'],
   ['reviewLink', 'Google yorum linki'],
+  ['whatsapp', 'WhatsApp numarası (ülke koduyla, + ve boşluksuz; ör. 905350850240)'],
+  ['storeDeliveryFee', 'Kutu siparişi: adrese teslimat ücreti (₺)'],
+  ['storeFreeDeliveryOver', 'Kutu siparişi: bu tutarın üstü ücretsiz teslimat (₺, 0 = kapalı)'],
   ['footerNote', 'Footer notu', true],
   ['copyright', 'Telif satırı']
 ];
@@ -471,7 +474,7 @@ function UrunlerTab() {
   const save = async () => {
     setSaving(true); setMsg(null);
     try {
-      const clean = items.map((it, i) => ({ ...it, id: it.id || slugify(it.name), price: toNum(it.price), order: i + 1 }));
+      const clean = items.map((it, i) => ({ ...it, id: it.id || slugify(it.name), price: toNum(it.price), stock: toNum(it.stock), order: i + 1 }));
       await saveCollection('products', clean, originalIds);
       setItems(clean); setOriginalIds(clean.map(i => i.id));
       setMsg({ ok: true, text: 'Kaydedildi ✓' });
@@ -488,9 +491,10 @@ function UrunlerTab() {
           ['name', 'Ürün adı'],
           ['desc', 'Açıklama'],
           ['price', 'Fiyat (₺)', 'number'],
+          ['stock', 'Stok adedi', 'number'],
           ['imageUrl', 'Görsel URL']
         ]}
-        newItem={() => ({ id: slugify('urun-' + Date.now()), name: '', desc: '', price: 0, imageUrl: '' })}
+        newItem={() => ({ id: slugify('urun-' + Date.now()), name: '', desc: '', price: 0, stock: 0, imageUrl: '' })}
         itemLabel={it => it.name || 'yeni'}
       />
       <div style={{ marginTop: 18 }}><SaveBar onSave={save} saving={saving} msg={msg} /></div>

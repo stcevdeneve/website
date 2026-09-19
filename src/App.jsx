@@ -42,7 +42,7 @@ export default function App() {
       <Appointment site={site} />
       <Reviews reviews={reviews} rating={rating} site={site} />
       <Coverage provinces={provinces} isMobile={isMobile} />
-      <Store products={products} />
+      <Store products={products} site={site} isMobile={isMobile} />
       <Contact site={site} />
       <Faq faqs={faqs} />
       <Footer site={site} />
