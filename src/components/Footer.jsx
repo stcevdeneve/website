@@ -6,7 +6,7 @@ export default function Footer({ site }) {
     <footer style={{ background: c.ink, color: '#C0AC9B' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '48px 20px 32px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))', gap: 28 }}>
         <div>
-          <img src="/logo.svg" alt="STC Evden Eve" style={{ height: 84, width: 'auto', display: 'block' }} />
+          <img src="/logo.svg" alt="STC Evden Eve" style={{ height: 'clamp(56px,14vw,84px)', width: 'auto', display: 'block' }} />
           <p style={{ margin: '16px 0 0', fontSize: 14, lineHeight: 1.65, maxWidth: '34ch' }}>{site.footerNote}</p>
         </div>
 

@@ -21,12 +21,12 @@ export default function Header({ site, isMobile }) {
       backdropFilter: 'blur(14px)', background: 'rgba(239,236,230,0.82)',
       borderBottom: '1px solid rgba(160,105,72,0.16)'
     }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '14px 20px', display: 'flex', alignItems: 'center', gap: 20 }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '8px 16px' : '14px 20px', display: 'flex', alignItems: 'center', gap: 20 }}>
         <a href="#anasayfa" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <img src="/logo.svg" alt="STC Evden Eve" style={{ height: 60, width: 'auto', display: 'block' }} />
+          <img src="/logo.svg" alt="STC Evden Eve" style={{ height: isMobile ? 40 : 60, width: 'auto', display: 'block' }} />
           <span style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
-            <span style={{ fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em', color: c.ink }}>STC</span>
-            <span style={{ fontSize: 13, fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', color: c.brown, marginTop: 4 }}>Evden Eve</span>
+            <span style={{ fontSize: isMobile ? 18 : 24, fontWeight: 700, letterSpacing: '-0.02em', color: c.ink }}>STC</span>
+            <span style={{ fontSize: isMobile ? 10 : 13, fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', color: c.brown, marginTop: 4 }}>Evden Eve</span>
           </span>
         </a>
 
@@ -46,7 +46,7 @@ export default function Header({ site, isMobile }) {
           aria-expanded={isOpen}
           style={{
             display: isMobile ? 'flex' : 'none', marginLeft: 'auto',
-            width: 44, height: 44, borderRadius: 13, border: '1px solid ' + c.lineStrong,
+            width: 42, height: 42, borderRadius: 12, border: '1px solid ' + c.lineStrong,
             background: c.field, cursor: 'pointer', flexDirection: 'column',
             alignItems: 'center', justifyContent: 'center', gap: 5
           }}>
