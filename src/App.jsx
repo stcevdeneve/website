@@ -37,7 +37,7 @@ export default function App() {
       <Header site={site} isMobile={isMobile} />
       <CallFab site={site} isMobile={isMobile} />
       <Hero hero={hero} />
-      <Services services={services} />
+      <Services services={services} isMobile={isMobile} />
       <PriceCalculator pricing={pricing} cities={d.cities} />
       <Appointment site={site} />
       <Reviews reviews={reviews} rating={rating} site={site} />
