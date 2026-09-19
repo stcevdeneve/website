@@ -8,7 +8,6 @@ export default function Contact({ site }) {
     <section id="iletisim" style={{ background: c.bgAlt, borderTop: '1px solid ' + c.line }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: 'clamp(40px,6vw,72px) 20px' }}>
         <div data-reveal>
-          <span style={kicker}>06 — Konum</span>
           <h2 style={h2}>Dükkân &amp; kutu teslim noktası</h2>
         </div>
 

@@ -137,13 +137,6 @@ export const faqs = [
   { id: 'f6', order: 6, question: 'Randevumu değiştirebilir miyim?', answer: 'Google Takvim üzerinden gelen onay e-postasındaki bağlantı ile 24 saat öncesine kadar ücretsiz değiştirebilirsiniz.' }
 ];
 
-export const rating = { avg: 4.8, count: 412, bars: { 5: 361, 4: 34, 3: 9, 2: 4, 1: 4 } };
+export const rating = { avg: 0, count: 0, bars: { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 } };
 
-export const reviews = [
-  { id: 'r1', order: 1, name: 'Elif Kaya', when: '2 hafta önce', stars: 5, avatarUrl: 'https://i.pravatar.cc/80?img=47', text: "Kadıköy'den Ataşehir'e taşındık. Ekip sabah 8'de geldi, akşam olmadan her şey kurulmuştu. Mutfağı kendileri paketledi, tek bir bardak bile kırılmadı." },
-  { id: 'r2', order: 2, name: 'Mert Doğan', when: '1 ay önce', stars: 5, avatarUrl: 'https://i.pravatar.cc/80?img=12', text: 'Fiyat hesaplayıcıdan aldığım tutar ile kesin fiyat neredeyse aynıydı, sürpriz ek ücret çıkmadı. Asansörsüz 4. kattan mobilya asansörüyle indirdiler.' },
-  { id: 'r3', order: 3, name: 'Zeynep Arslan', when: '1 ay önce', stars: 4, avatarUrl: 'https://i.pravatar.cc/80?img=32', text: 'İstanbul–İzmir taşımam iki günde tamamlandı. Araç bir saat geç geldi ama sürekli bilgilendirdiler, eşyalar eksiksiz teslim edildi.' },
-  { id: 'r4', order: 4, name: 'Burak Şen', when: '2 ay önce', stars: 5, avatarUrl: 'https://i.pravatar.cc/80?img=53', text: 'Ofisimizi hafta sonu taşıdılar, pazartesi hiç aksama olmadı. Bilgisayarlar ve dolaplar numaralı etiketlerle geldi, kurulum çok hızlıydı.' },
-  { id: 'r5', order: 5, name: 'Ayşe Yıldırım', when: '3 ay önce', stars: 5, avatarUrl: 'https://i.pravatar.cc/80?img=44', text: 'Bir ay depoda kaldı eşyalarım, teslim aldığımda hiç nem veya koku yoktu. Depodan koli de aldım, fiyatları piyasadan uygun.' },
-  { id: 'r6', order: 6, name: 'Can Özkan', when: '4 ay önce', stars: 5, avatarUrl: 'https://i.pravatar.cc/80?img=14', text: 'Keşif için gelen arkadaş çok detaylı not aldı, taşıma günü hiçbir şey şaşırtmadı. Piyano taşımasını da sorunsuz yaptılar.' }
-];
+export const reviews = [];

@@ -51,7 +51,6 @@ export default function PriceCalculator({ pricing, cities }) {
   return (
     <section id="hesapla" style={{ maxWidth: 1200, margin: '0 auto', padding: 'clamp(40px,6vw,72px) 20px' }}>
       <div style={{ marginBottom: 26 }} data-reveal>
-        <span style={kicker}>01 — Fiyat</span>
         <h2 style={h2}>Fiyat hesaplama</h2>
         <p style={lead}>Nereden nereye taşındığınızı, kat ve asansör bilgisini seçin; tahmini tutarınız anında hesaplansın.</p>
       </div>

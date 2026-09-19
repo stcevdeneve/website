@@ -7,7 +7,6 @@ export default function Faq({ faqs }) {
   return (
     <section id="sss" style={{ maxWidth: 900, margin: '0 auto', padding: 'clamp(40px,6vw,80px) 20px' }}>
       <div data-reveal>
-        <span style={kicker}>07 — S.S.S.</span>
         <h2 style={{ ...h2, marginBottom: 26 }}>Sık sorulan sorular</h2>
       </div>
 

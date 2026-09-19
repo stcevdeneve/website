@@ -9,7 +9,6 @@ export default function Coverage({ provinces, isMobile }) {
     <section id="harita" style={{ maxWidth: 1200, margin: '0 auto', padding: 'clamp(40px,6vw,72px) 20px' }}>
       <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap', marginBottom: 24 }} data-reveal>
         <div>
-          <span style={kicker}>04 — Kapsama</span>
           <h2 style={h2}>Gittiğimiz iller</h2>
           <p style={lead}>Her işaret, ekibimizin taşıma tamamladığı bir ili gösterir. Turuncu işaret merkez depomuzdur.</p>
         </div>

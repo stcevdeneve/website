@@ -13,10 +13,33 @@ export default function Reviews({ reviews, rating, site }) {
   const bars = [5, 4, 3, 2, 1];
   const total = rating.count || 1;
 
+  if (!reviews || reviews.length === 0) {
+    return (
+      <section id="yorumlar" style={{ maxWidth: 1200, margin: '0 auto', padding: 'clamp(40px,6vw,72px) 20px' }}>
+        <div data-reveal style={{
+          background: '#fff', border: '1px solid ' + c.line, borderRadius: 28,
+          padding: 'clamp(32px,6vw,64px) clamp(20px,4vw,48px)', textAlign: 'center'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 6 }}>
+            {[1, 2, 3, 4, 5].map(i => <Star key={i} on={false} size={30} />)}
+          </div>
+          <h2 style={{ ...h2, marginTop: 22 }}>İlk yorumu siz yazın</h2>
+          <p style={{ ...lead, margin: '12px auto 0', textAlign: 'center' }}>
+            Taşınma deneyiminizi Google'da paylaşın; sonraki müşterilerimize yol gösterin.
+          </p>
+          <a href={site.reviewLink} target="_blank" rel="noopener noreferrer" style={{
+            display: 'inline-block', marginTop: 26, padding: '14px 28px', borderRadius: 14,
+            background: c.orange, color: '#fff', fontSize: 15, fontWeight: 600,
+            boxShadow: '0 10px 24px rgba(232,122,0,0.28)'
+          }}>Google'da yorum yaz</a>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="yorumlar" style={{ maxWidth: 1200, margin: '0 auto', padding: 'clamp(40px,6vw,72px) 20px' }}>
       <div data-reveal>
-        <span style={kicker}>03 — Referans</span>
         <h2 style={h2}>Google yorumları</h2>
         <p style={{ ...lead, marginBottom: 26 }}>Müşterilerimizin Google İşletme Profilimizde bıraktığı yorumlar.</p>
       </div>
