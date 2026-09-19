@@ -1,4 +1,4 @@
-export const SLOTS = ['09:00', '10:30', '12:00', '13:30', '15:00', '16:30', '18:00', '19:30'];
+export const SLOTS = ['07:00', '12:00'];
 export const APPOINTMENT_DURATION_MIN = 60;
 
 // Türkiye 2016'dan beri sabit UTC+3 kullanıyor (yaz saati uygulaması yok).

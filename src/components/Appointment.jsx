@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { c, kicker, h2, lead, field, mono } from '../styles';
 
 const MONTHS = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+const SLOT_LABELS = { '07:00': 'Öğleden önce', '12:00': 'Öğleden sonra' };
 const WEEKDAYS = ['Pzt','Sal','Çar','Per','Cum','Cmt','Paz'];
 
 function toDateStr(key) {
@@ -101,7 +102,7 @@ export default function Appointment({ site }) {
           <div style={{ fontSize: 40, marginBottom: 10 }}>✅</div>
           <h2 style={h2}>Randevunuz alındı</h2>
           <p style={{ ...lead, marginTop: 10 }}>
-            {selected[2]} {MONTHS[selected[1] - 1]} {selected[0]} · {success.slot} için randevunuz oluşturuldu. Ekibimiz onay için sizinle iletişime geçecek.
+            {selected[2]} {MONTHS[selected[1] - 1]} {selected[0]} · {SLOT_LABELS[success.slot] || success.slot} için randevunuz oluşturuldu. Ekibimiz onay için sizinle iletişime geçecek.
           </p>
           <button onClick={() => { setSuccess(null); setSelected(null); setSlot(null); setForm({ name: '', phone: '', address: '' }); }}
             style={{ marginTop: 20, padding: '12px 22px', borderRadius: 14, border: 'none', background: c.brown, color: '#fff', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>
@@ -175,7 +176,7 @@ export default function Appointment({ site }) {
             )}
 
             {selected && !loadingAvailability && !availabilityError && (
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(94px,1fr))', gap: 9, marginTop: 16 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(140px,1fr))', gap: 9, marginTop: 16 }}>
                 {(availability ? availability.slots : []).map(({ time, available }) => {
                   const on = slot === time;
                   const disabled = !available;
@@ -187,7 +188,7 @@ export default function Appointment({ site }) {
                       background: on ? c.ink : disabled ? 'rgba(160,105,72,0.06)' : c.field,
                       color: on ? '#fff' : disabled ? '#C3B7A9' : c.ink,
                       textDecoration: disabled ? 'line-through' : 'none'
-                    }}>{time}</button>
+                    }}>{SLOT_LABELS[time] || time}</button>
                   );
                 })}
               </div>
@@ -215,12 +216,9 @@ export default function Appointment({ site }) {
                 fontSize: 15, fontWeight: 600,
                 cursor: (ready && form.name && form.phone) ? 'pointer' : 'not-allowed'
               }}>
-              {submitting ? 'Gönderiliyor…' : ready ? 'Randevuyu onayla · ' + slot : 'Gün ve saat seçin'}
+              {submitting ? 'Gönderiliyor…' : ready ? 'Randevuyu onayla · ' + (SLOT_LABELS[slot] || slot) : 'Gün ve saat seçin'}
             </button>
 
-            <p style={{ margin: '12px 0 0', fontSize: 12, lineHeight: 1.55, color: '#8A7461', fontFamily: mono }}>
-              Randevunuz oluşturulduğunda ekibimizin takviminde otomatik olarak yer ayrılır.
-            </p>
           </div>
         </div>
       </div>
