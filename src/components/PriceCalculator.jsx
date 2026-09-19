@@ -15,14 +15,16 @@ function haversineKm(a, b, roadFactor) {
 }
 
 export default function PriceCalculator({ pricing, cities }) {
-  const [fromCity, setFromCity] = useState('Konya');
-  const [toCity, setToCity] = useState('İstanbul');
+  const [fromCity, setFromCity] = useState('');
+  const [toCity, setToCity] = useState('');
   const [fromFloor, setFromFloor] = useState(3);
   const [toFloor, setToFloor] = useState(2);
   const [fromLift, setFromLift] = useState(true);
   const [toLift, setToLift] = useState(false);
   const [homeType, setHomeType] = useState('2+1');
   const [extras, setExtras] = useState({ paket: true });
+
+  const ready = !!fromCity && !!toCity;
 
   const calc = useMemo(() => {
     const p = pricing;
@@ -109,22 +111,30 @@ export default function PriceCalculator({ pricing, cities }) {
 
         <div style={{ background: c.ink, borderRadius: 24, padding: 'clamp(22px,3vw,30px)', color: c.bg, position: 'sticky', top: 96 }} data-reveal>
           <div style={{ ...kicker, color: '#C9A487' }}>Tahmini tutar</div>
-          <div style={{ marginTop: 14, fontSize: 'clamp(30px,4.4vw,42px)', fontWeight: 700, letterSpacing: '-0.03em', lineHeight: 1.05 }}>
-            {fmtTRY(calc.total * pricing.rangeLow)} – {fmtTRY(calc.total * pricing.rangeHigh)}
-          </div>
-          <div style={{ marginTop: 8, fontSize: 13.5, color: '#B9A493' }}>
-            {fromCity} → {toCity} · ~{calc.km} km · {calc.vol} m³
-          </div>
-          <div style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 11 }}>
-            <Row label="Taşıma & işçilik" value={fmtTRY(calc.tasima)} />
-            <Row label={calc.isLocal ? 'Şehir içi araç' : 'Şehirler arası araç'} value={fmtTRY(calc.mesafe)} />
-            <Row label="Kat / asansör farkı" value={calc.kat ? fmtTRY(calc.kat) : 'Dahil'} />
-            <Row label="Ek hizmetler" value={calc.ek ? fmtTRY(calc.ek) : '—'} />
-          </div>
+          {ready ? (
+            <>
+              <div style={{ marginTop: 14, fontSize: 'clamp(30px,4.4vw,42px)', fontWeight: 700, letterSpacing: '-0.03em', lineHeight: 1.05 }}>
+                {fmtTRY(calc.total * pricing.rangeLow)} – {fmtTRY(calc.total * pricing.rangeHigh)}
+              </div>
+              <div style={{ marginTop: 8, fontSize: 13.5, color: '#B9A493' }}>
+                {fromCity} → {toCity} · ~{calc.km} km · {calc.vol} m³
+              </div>
+              <div style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 11 }}>
+                <Row label="Taşıma & işçilik" value={fmtTRY(calc.tasima)} />
+                <Row label={calc.isLocal ? 'Şehir içi araç' : 'Şehirler arası araç'} value={fmtTRY(calc.mesafe)} />
+                <Row label="Kat / asansör farkı" value={calc.kat ? fmtTRY(calc.kat) : 'Dahil'} />
+                <Row label="Ek hizmetler" value={calc.ek ? fmtTRY(calc.ek) : '—'} />
+              </div>
+            </>
+          ) : (
+            <div style={{ marginTop: 14, fontSize: 15, lineHeight: 1.6, color: '#C0AC9B' }}>
+              Tahmini tutarı görmek için <b style={{ color: '#EFECE6' }}>nereden</b> ve <b style={{ color: '#EFECE6' }}>nereye</b> taşınacağınızı seçin.
+            </div>
+          )}
           <a href="#randevu" style={{
             display: 'block', textAlign: 'center', marginTop: 26, padding: 14, borderRadius: 14,
             background: c.orange, color: '#fff', fontSize: 15, fontWeight: 600
-          }}>Bu fiyatla randevu al</a>
+          }}>{ready ? 'Bu fiyatla randevu al' : 'Randevu al'}</a>
           <p style={{ margin: '14px 0 0', fontSize: 12.5, lineHeight: 1.55, color: '#9C8877' }}>
             Tutar; mesafe, hacim ve kat bilgisine göre üretilen ön tahmindir. Kesin fiyat randevunuz sonrası netleşir.
           </p>
@@ -151,6 +161,7 @@ function Endpoint({ title, titleColor, cities, city, setCity, floor, setFloor, l
       <div style={{ fontSize: 12.5, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: titleColor, marginBottom: 12 }}>{title}</div>
       <Label style={{ marginBottom: 6 }}>Şehir</Label>
       <select value={city} onChange={e => setCity(e.target.value)} style={field}>
+        <option value="">Şehir seçin</option>
         {cities.map(x => <option key={x.name} value={x.name}>{x.name}</option>)}
       </select>
       <Label style={{ margin: '14px 0 6px' }}>Kat</Label>
